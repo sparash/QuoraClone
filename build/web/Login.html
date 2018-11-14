@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: Arial;
+    color: black;
+}
+
+.split {
+    height: 100%;
+  
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left {
+    left: 0;
+    background-color: #6b5b95;
+    width: 60%;
+}
+
+.right {
+    right: 0;
+    background-color:#FFD662 ;
+    width: 40%;
+}
+
+.centered {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.centered1 {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    
+}
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+image
+{
+    
+    height: 200px;
+    width: 250px;
+    
+}
+input
+{
+    
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid white;
+    color: white;
+  
+}
+button
+{
+    border: none;
+    background: #0066ff;
+    height: 30px;
+    width: 70px;
+    
+}
+
+</style>
+</head>
+<body>
+
+<div class="split left">
+  <div class="centered">
+      
+      <h3>
+          Bonjour!
+      </h3>
+      <h4>
+          Find Your Answers Here..
+      </h4>
+       <img src="images/quoralogo.jpg" alt="quora" style="width:100%">
+      <p>
+          Life is 10% what happens to you and 90% how you react to it.
+      </p>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered1">
+      <h5>
+          Fill the Criteria..
+      </h5><br>
+      <form action="LServlet" method="POST">
+          
+          Name: <input type="text" align="right" name="name"><br><br><br>
+         E-mail: <input type="text" name="mail"><br><br><br>
+         Password: <input type="password" name="password"><br><br><br>
+         <button >Log in</button>
+  </form>
+      
+      
+  </div>
+</div>
+     
+</body>
+</html> 
