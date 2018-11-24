@@ -34,18 +34,37 @@ public class AnswerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AnswerServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AnswerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+       
+        String Answer = request.getParameter("ans");
+       
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false", "root", "sparashadmin1234.@");
+            PreparedStatement pst1 = conn.prepareStatement("Select q_id from Question");
+            PreparedStatement pst = conn.prepareStatement("Insert into answer values(?,?)");
+            ResultSet rs = pst1.executeQuery();
+            while(rs.next())
+            {
+                int Id = rs.getInt("q_id");
+                pst.setInt(1,Id );
+            }
+            String ans=request.getParameter("Answer");
+           pst.setString(2,ans);       
+            pst.executeUpdate();
+               out.println("Added Successfully--");
+              
+               
+          
+                //out.println("Incorrect login credentials");
+            
+        } 
+        catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+       
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,38 +93,9 @@ public class AnswerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
+        processRequest(request, response);
        
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-       
-        String Answer = request.getParameter("ans");
-       
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false", "root", "sparashadmin1234.@");
-            PreparedStatement pst1 = conn.prepareStatement("Select ques from Question");
-            PreparedStatement pst = conn.prepareStatement("Insert into QA values(?,?)");
-            ResultSet rs = pst1.executeQuery();
-            while(rs.next())
-            {
-                String Question = rs.getString("ques");
-                pst.setString(1,Question );
-            }
-           pst.setString(2,Answer);       
-            pst.executeUpdate();
-               out.println("Added Successfully--");
-              
                
-          
-                //out.println("Incorrect login credentials");
-            
-        } 
-        catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-       
-        }
-       
        
        
     }

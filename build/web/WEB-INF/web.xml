@@ -24,6 +24,18 @@
         <servlet-name>ShowAnswer</servlet-name>
         <servlet-class>ShowAnswer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginSuccess</servlet-name>
+        <servlet-class>LoginSuccess</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignupSuccess</servlet-name>
+        <servlet-class>SignupSuccess.SignupSuccess</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GiveAnswer</servlet-name>
+        <servlet-class>GiveAnswer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LServlet</servlet-name>
         <url-pattern>/LServlet</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>ShowAnswer</servlet-name>
         <url-pattern>/ShowAnswer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginSuccess</servlet-name>
+        <url-pattern>/LoginSuccess</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignupSuccess</servlet-name>
+        <url-pattern>/SignupSuccess</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GiveAnswer</servlet-name>
+        <url-pattern>/GiveAnswer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

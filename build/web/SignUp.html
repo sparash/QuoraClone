@@ -1,89 +1,148 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            h2
-            {
-                color: white;
-                
-            }
-            p
-            {
-                
-                   color: white;
-            }
-            div
-            {
-                height: 500px;
-                width: 600px;
-                
-                text-align: center;
-                 background-image: url("C:/Users/Rahul/Downloads/back.jpg");
-             
-            }
-            .A
-            {
-                height:100px;
-                width: 400px;
-                text-align: center;
-                margin-left: 100px;
-               
-         
-            }
-            input{
-               
-                border-color:  blue blueviolet;
-                background: transparent;
-            color:black;
-                height:30px;
-                width:200px; 
-              border: 1px solid red;
-            } 
-            
-           
-            button
-            {
-                background-color: #0099ff;   
-               height: 30px;
-               width: 70px;
-               border: none;
-            }
-            
-        </style>
-    </head>
-    <body>
-        <div>
-              <h2>
-            CREATE  YOUR ACCOUNT HERE!!!
-        </h2>
-            <div class="A">
-      
-        <p>
-          Your account is portal to anything..
-          your classrooms,office,forums,career resources and many more....
-            
-        </p>
-            </div>
-           
-        <form action="SignServlet" method="POST">
-            
-            <input type="text" placeholder="name*" name="name"><br><br>
-            
-             <input type="text" placeholder="E-mail" name="mail"><br><br>
-             
-              <input type="password" placeholder="password*" name="pass"><br><br>
-              
-              <input type="password" placeholder="Confirm password*" name="cpass"><br><br><br>
-            
-              <button type="submit"> Sign Up</button>
-        </form>
-                </div>
-        
-        
-        
-        
-        
-    </body>
+<style>
+body { background: #9cb8b3; }
+
+h1 {
+    font: 600 1.5em/1 'Raleway', sans-serif;
+    color: rgba(0,0,0,.5);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .5em;
+    position: absolute;
+    top: 25%;
+    width: 100%;
+}
+
+span, span:after {
+    font-weight: 900;
+    color: #efedce;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    letter-spacing: .1em;
+    padding: .2em 0 .25em 0;
+}
+
+span {
+    font-size: 4em;
+    z-index: 100;
+    text-shadow: .04em .04em 0 #9cb8b3;
+}
+
+span:after {
+    content: attr(data-shadow-text);
+    color: rgba(0,0,0,.35);
+    text-shadow: none;
+    position: absolute;
+    left: .0875em;
+    top: .0875em;
+    z-index: -1;
+    -webkit-mask-image: url(//f.cl.ly/items/1t1C0W3y040g1J172r3h/mask.png);
+}
+
+
+
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+</style>
+<body>
+
+<h1>Quora Clone Signup<br><span data-shadow-text="Sign-up">Sign-up</span><br> please fill the sign-up page below</h1>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<form action="SignServlet" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <hr>
     
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="Name" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
     
-    
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </div>
+</form>
+
+</body>
+ 
+  
+
+
+</body>
 </html>

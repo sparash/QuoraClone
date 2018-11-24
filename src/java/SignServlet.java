@@ -6,7 +6,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,21 +35,46 @@ public class SignServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SignServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SignServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false","root","sparashadmin1234.@");
+            String query1="insert into info2 values(?,?,?)";
+            PreparedStatement pstmt=conn.prepareStatement(query1);
+            String n=request.getParameter("Name");
+            String u=request.getParameter("email");
+            String p=request.getParameter("psw");
+            pstmt.setString(1,n);
+            pstmt.setString(2,u);
+            pstmt.setString(3,p);
+            //pstmt.setString(4,p);
+            int rs=pstmt.executeUpdate();
+            if(rs>=1)
+            {
+                //System.out.print(rs);
+                HttpSession session=request.getSession();
+                session.setAttribute("user",u);
+            // Set expiry time of the session to 30mins
+                session.setMaxInactiveInterval(30*60);
+                String url=response.encodeRedirectURL("SignupSuccess");
+                response.sendRedirect(url);
+            }
+            else
+            {
+                request.getSession().invalidate();
+            response.sendRedirect("Login.html");
+            }
+            System.out.println("Rows Affected:::"+rs);
+            
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+   
+     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -74,49 +100,11 @@ public class SignServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-       
-             response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        String name = request.getParameter("name");
-        String mail = request.getParameter("mail");
-         String pass = request.getParameter("pass");
-          String cpass = request.getParameter("cpass");
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false", "root", "sparashadmin1234.@");
-            PreparedStatement pst = conn.prepareStatement("Insert into info2 values(?,?,?)");
-            pst.setString(1, name);
-            pst.setString(2, mail);
-             pst.setString(3, pass);
-             
-              if(pass.equals(cpass))
-              {
-                      
-             pst.executeUpdate();
-             
-              }
-                else
-              {
-                  out.println("Password must match Confirm Password--");
-                  
-              }
-          
-                //out.println("Incorrect login credentials");
-            
-        } 
-        catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-       
-        }
-       
-       
-       
-       
+        processRequest(request, response);
     }
 
     /**
-     * Returns a short descrip tion of the servlet.
+     * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
@@ -124,5 +112,4 @@ public class SignServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

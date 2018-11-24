@@ -4,14 +4,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.*;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author My Pc
  */
-public class LServlet extends HttpServlet {
+public class LoginSuccess extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,36 +23,41 @@ public class LServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false","root","sparashadmin1234.@");
-            String query1="select email from info2 where email=? and password=?";
-            PreparedStatement pstmt=conn.prepareStatement(query1);
-            String u=request.getParameter("email");
-            String p=request.getParameter("psw");
-            pstmt.setString(1,u);
-            pstmt.setString(2,p);
-            ResultSet rs=pstmt.executeQuery();
-            if(rs.last()==true)
-            {
-                //System.out.print(rs);
-                HttpSession session=request.getSession();
-                session.setAttribute("user",u);
-            // Set expiry time of the session to 30mins
-                session.setMaxInactiveInterval(30*60);
-                String url=response.encodeRedirectURL("LoginSuccess");
-                response.sendRedirect(url);
-            }
-            else
-            {
-                request.getSession().invalidate();
-            response.sendRedirect("SignUp.html");
-            }
+        HttpSession session=request.getSession(false);
+        if(session!=null){
+          response.setContentType("text/html");
+          try(PrintWriter pw=response.getWriter())
+          {
+            pw.println("<!DOCTYPE html>");
+            pw.println("<html>");
+            pw.println("<head>");
+            pw.println("<title>Servlet Servlet2</title>");            
+            pw.println("</head>");
+            pw.println("<body>");
+            pw.println("<h1>You have successfully logged in</h1>");
+            pw.println("<p>Username : "+session.getAttribute("user")+"</p>");
+            pw.println("<p>Session Id :"+session.getId()+"</p>");
+            pw.println("</body>");
+            pw.println("</html>");
+            
+          }
         }
-        catch(Exception e)
+        else
         {
-            System.out.println(e);
+          response.setContentType("text/html");
+          try(PrintWriter pw=response.getWriter())
+          {
+            pw.println("<!DOCTYPE html>");
+            pw.println("<html>");
+            pw.println("<head>");
+            pw.println("<title>Servlet Servlet2</title>");            
+            pw.println("</head>");
+            pw.println("<body>");
+            pw.println("<h1>You are not logged in because session was not created</h1>");
+            pw.println("</body>");
+            pw.println("</html>");
+            
+          }  
         }
     }
 
@@ -95,5 +99,6 @@ public class LServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }

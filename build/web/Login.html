@@ -5,7 +5,7 @@
 <style>
 body {
     font-family: Arial;
-    color: black;
+    color: white;
 }
 
 .split {
@@ -20,13 +20,13 @@ body {
 
 .left {
     left: 0;
-    background-color: #6b5b95;
+    background-color: black;
     width: 60%;
 }
 
 .right {
     right: 0;
-    background-color:#FFD662 ;
+    background-color:black ;
     width: 40%;
 }
 
@@ -47,7 +47,7 @@ body {
 }
 .centered img {
     width: 150px;
-    border-radius: 50%;
+/*    border-radius: 50%;*/
 }
 
 image
@@ -82,15 +82,11 @@ button
 <div class="split left">
   <div class="centered">
       
-      <h3>
-          Bonjour!
-      </h3>
-      <h4>
-          Find Your Answers Here..
-      </h4>
-       <img src="images/quoralogo.jpg" alt="quora" style="width:100%">
+       <img src="images/demon.jpg" alt="quora" style="width:100%">
       <p>
-          Life is 10% what happens to you and 90% how you react to it.
+      <h3>
+          Demon Absolution!
+      </h3>
       </p>
   </div>
 </div>
@@ -102,9 +98,16 @@ button
       </h5><br>
       <form action="LServlet" method="POST">
           
-          Name: <input type="text" align="right" name="name"><br><br><br>
+<!--          Name: <input type="text" align="right" name="name"><br><br><br>
          E-mail: <input type="text" name="mail"><br><br><br>
-         Password: <input type="password" name="password"><br><br><br>
+         Password: <input type="password" name="password"><br><br><br>-->
+ 
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required><br><br><br>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required><br><br><br>
          <button >Log in</button>
   </form>
       
