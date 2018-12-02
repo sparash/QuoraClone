@@ -20,13 +20,13 @@
         @import "compass/css3";
         @import "compass/css3/transform";
         @import url(https://fonts.googleapis.com/css?family=Bangers);
-        * {
+        /* * {
             box-sizing: border-box;
         }
         
         .topnav {
             overflow: hidden;
-        }
+        } */
         
         .topnav a {
             float: left;
@@ -89,6 +89,10 @@
         }
         
         .btn:hover {
+            background-color: RoyalBlue;
+        }
+        
+        .btn2:hover {
             background-color: RoyalBlue;
         }
         
@@ -237,21 +241,6 @@
             right: 350;
             top: 10%;
         }
-        /* .gallery {
-            box-sizing: border-box;
-        }
-        
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 5px;
-        }
-        
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        } */
         
         .foot {
             background-color: black;
@@ -281,8 +270,12 @@
             float: right;
         }
         
-        f1 a {
+        .f1 a {
             color: white;
+        }
+        
+        .cos {
+            color: black;
         }
     </style>
 </head>
@@ -291,13 +284,13 @@
     <div class="topnav">
         <button class="btn"><i class="fa fa-home"></i><a href="SignUp.html">Home</a></button>
         <button class="btn"><i class="fa fa-bell"></i> <a href="SignUp.html">Notification</a></button>
-        <button class="btn"><i class="fa fa-question"></i><a href="QShowServlet">Questions</a></button>
-        <button class="btn"><i class="fa fa-pencil"></i><a href="GiveAnswer">Answers</a></button>
+        
+        <button class="btn"><i class="fa fa-pencil"></i><a href="newjsp.jsp">Display Answers</a></button>
 
         <button class="btn2"><i class="fa fa-cloud"></i><a href="SignUp.html">Sign up</a></button>
         <button class="btn2"><i class="fa fa-bolt"></i> <a href="Login.html">Login</a></button>
         <button class="btn2"><i class="fa fa-plus"></i><a href="AddQ.html">AddQuestion</a></button>
-        <button class="btn2"><i class="fa fa-eye"></i><a href="GiveAnswer.html">AddAnswer</a></button>
+        <button class="btn2"><i class="fa fa-eye"></i><a href="newjsp1.jsp">AddAnswer</a></button>
 
     </div>
     <div class="content">
@@ -317,7 +310,7 @@
 
         <div class="a">
 
-            <h4>What made you sad about Quora?</h4><br><br>Griffin Wagner left today. When I first saw Griffin, I was an apple fanboy and was writing 2-sentence answers feeling bad because none of them got popular. Griffin was a fanboy, but he wrote longer
+            <h3>What made you sad about Quora?</h3><br><br>Griffin Wagner left today. When I first saw Griffin, I was an apple fanboy and was writing 2-sentence answers feeling bad because none of them got popular. Griffin was a fanboy, but he wrote longer
             answers, included pictures and always seemed to say “Rock On” in the end of everything he wrote. I loved his answers because all of them seemed like they pulled the answer out of my mind. We agreed on so much and he seemed like a fellow fanboy
             of sorts. I tried copying a few things he did. I included pictures in everything I wrote, I adopted the idea of writing longer answers, and the one thing I didn’t realize was that I was still a fanboy. In retrospect, he was the one who shaped
             the entire idea of how to write about consumer electronics on Quora. Everyone seemed to copy him. Further, Griffin taught the world the art of using pictures in answers. One morning I saw Griffin writing about Apple on a blog called The Edible
@@ -330,30 +323,34 @@
             post. I still don’t know if I regret that, because it ended up being a huge change for TEA and its fanfare, as the ordeal brought some controversy with it. It was sad to see Griffin go and he wasn’t happy with things said about him after the
             event, but we drifted ways and he now left the platform he changed so drastically. On a sidenote, I have a suspicion this was written by him, and that the guy is too much of a legend to reveal it. Griffin left Quora and it feels like a punch
             in the gut as much as it does a hope of fixing things in 2020.<br>
-            <form action="QShowServlet" id="usrform">
-                <textarea rows="4" cols="100" name="comment" form="usrform">
-              Comment</textarea><br>
-                <input type="submit">
-            </form>
+            <div class="cos">
+                <form action="QShowServlet" id="usrform">
+                    <textarea rows="4" cols="100" name="comment" form="usrform">
+              Comment....</textarea><br>
+                    <input type="submit">
+                </form>
+            </div>
             <br>
 
             <br><br>
-            <h4>Does your smartphone really need a screen protector?</h4><br><br> I don’t use a phone unless it has one.<br><img src="images/13.jpg" alt="computer" style="width:50%"><br> I’m pretty clumsy with my phone, and with phones losing bezels and gaining
-            glass on more sides than one, more protection is better. Now, to see if a screen protector works, we should talk about how the tempered glass on your phone is more durable than the glass in your windows. From this post, I gather that Corning
-            Gorilla Glass is made by dipping normal glass in a bath of molten salt. Large potassium ions from the salt replace the smaller sodium ions in the glass in an ion exchange. From there, the glass cools and the result is glass with very tightly
-            packed ions. Gorilla glass is strong because it has a layer of compression among the ions. It doesn’t break often when you drop it because the ions are very tightly packed together and don’t separate in a crack. When this glass is scratched,
-            ions actually are removed from the glass, which reduces the compression. As scratches multiply, compression reduces and the glass ends up being much easier to crack. A screen protector protects your phone from scratches and in doing so, it
-            keeps your phone as safe from scratches as it possibly can be. I don’t see any reason not to have one since they’re very cheap and they are effectively invisible.
+            <h3>Does your smartphone really need a screen protector?</h3><br><br> I don’t use a phone unless it has one.<br><img src="images/13.jpg" alt="computer" style="widows: 100px;"><br> I’m pretty clumsy with my phone, and with phones losing bezels
+            and gaining glass on more sides than one, more protection is better. Now, to see if a screen protector works, we should talk about how the tempered glass on your phone is more durable than the glass in your windows. From this post, I gather
+            that Corning Gorilla Glass is made by dipping normal glass in a bath of molten salt. Large potassium ions from the salt replace the smaller sodium ions in the glass in an ion exchange. From there, the glass cools and the result is glass with
+            very tightly packed ions. Gorilla glass is strong because it has a layer of compression among the ions. It doesn’t break often when you drop it because the ions are very tightly packed together and don’t separate in a crack. When this glass
+            is scratched, ions actually are removed from the glass, which reduces the compression. As scratches multiply, compression reduces and the glass ends up being much easier to crack. A screen protector protects your phone from scratches and in
+            doing so, it keeps your phone as safe from scratches as it possibly can be. I don’t see any reason not to have one since they’re very cheap and they are effectively invisible.
             <br>
-            <form action="QShowServlet" id="usrform">
-                <textarea rows="4" cols="100" name="comment" form="usrform">
-                   <mark>Comment</mark></textarea><br>
-                <input type="submit">
-            </form>
+            <div class="cos">
+                <form action="QShowServlet" id="usrform">
+                    <textarea rows="4" cols="100" name="comment" form="usrform">
+              Comment....</textarea><br>
+                    <input type="submit">
+                </form>
+            </div>
             <br>
 
             <br><br>
-            <h4>What is the best computer you’ve owned?</h4><br><br> The Raspberry Pi 3.<br><img src="images/12.jpg" alt="computer" style="width:50%"><br> The Pi 3 was the first computer I bought myself. I had hit rock bottom as a 14 year old and I was failing
+            <h3>What is the best computer you’ve owned?</h3><br><br> The Raspberry Pi 3.<br><img src="images/12.jpg" alt="computer" style="width:50%"><br> The Pi 3 was the first computer I bought myself. I had hit rock bottom as a 14 year old and I was failing
             in basically every way I possibly could then. Grades were terrible, I barely had any friends, I was often depressed and life sucked. It sucked mostly because I chose to spend all my time playing a video game. One fine day, my game-controller
             broke and left me to realize I was effectively lifeless without video games. I didn’t have anything to do. My desktop had given up the ghost months ago and I didn’t have a phone. I then went out in search of ways to make enough money so I
             can buy myself a new controller. I repaired electronics. I made 40 dollars for the controller but then I realized life is better without video games and that I’d be better off getting a Raspberry Pi as a rudimentary computer. Thank god I did.
@@ -363,51 +360,36 @@
             put the controller down. I haven’t bought a controller to this date. With all that said, I think the Pi was a great computer. I ran it 24/7, I did basically all my work on it and I overclocked it to 2.1GHz. Yuge feat. At one point, I could’ve
             used a different computer, but I used the Pi out of sentiment. It was by far the best computer I’ve ever owned.
             <br>
-            <form action="QShowServlet" id="usrform">
-                <textarea rows="4" cols="100" name="comment" form="usrform">
-              Comment</textarea><br>
-                <input type="submit">
-            </form>
+            <div class="cos">
+                <form action="QShowServlet" id="usrform">
+                    <textarea rows="4" cols="100" name="comment" form="usrform">
+              Comment....</textarea><br>
+                    <input type="submit">
+                </form>
+            </div>
             <br>
 
+            <h4>What dirty business tactics do you know?</h4><br><br>We pay extra 53% to buy this cadbury celebrations. Let me explain you.<br>
+            <img src="images/14.jpg" alt="computer" style="width:50%"><br> This is a box of 199 Rs. I don't know how many of you know this but I used to think that a box of 199 Rs would give at least 160 Rs Chocolate inside the box, but I was wrong. let's
+            understand this.<br>
+
+            <img src="images/15.jpg" alt="computer" style="width:50%"> Box contain total 12 chocolates.<br> 3−Dairy milk(each 20 Rs) = 3∗20 =60 Rs.<br> 3−Dairy milk(each 10 Rs)= 3*10 = 30 Rs.<br> 2− 5 Star(each 10 Rs)=2∗10 = 20 Rs.<br> 1− 5 Star of 5
+            Rs =1∗5 = 5 Rs.<br> 3− Gems of 5 Rs each = 3∗5= 15 Rs.<br> Total is 130 Rs.<br> So actual value of chocolates is 130 Rs. but we pay 199 Rs i.e extra 69 Rs which is 53% of actual value.<br> Just for the small box which they provide makes them
+            huge profit of 53%.<br> So Cadbury celebrations is not for our celebration, its for company’s celebration.<br> Image source: My phone gallery.<br>
+            <br>
+            <div class="cos">
+                <form action="QShowServlet" id="usrform">
+                    <textarea rows="4" cols="100" name="comment" form="usrform">
+              Comment....</textarea><br>
+                    <input type="submit">
+                </form>
+            </div>
+            <br>
 
 
         </div>
 
-        <!-- <div class="gallery" id="gallery">
-            <div class="flex-container">
-                <div class="column">
-                    <img src="images/2.jpg" alt="rocket" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/3.jpg" alt="satellite" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/4.jpg" alt="observatory" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/5.jpeg" alt="mountains" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/6.jpg" alt="telescope" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/7.jpg" alt="Europe observatory" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/8.jpg" alt="successful" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/9.jpg" alt="rocketpod" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/10.jpg" alt="ignition" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="images/11.jpg" alt="moon" style="width:100%">
-                </div>
-            </div>
-        </div> -->
+
 
 
         <div class="foot">

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Rahul
+ * @author DELL
  */
 public class AnswerServlet extends HttpServlet {
 
@@ -44,23 +44,19 @@ public class AnswerServlet extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false", "root", "sparashadmin1234.@");
             PreparedStatement pst1 = conn.prepareStatement("Select q_id from Question");
             PreparedStatement pst = conn.prepareStatement("Insert into answer values(?,?)");
-            ResultSet rs = pst1.executeQuery();
-            while(rs.next())
-            {
-                int Id = rs.getInt("q_id");
-                pst.setInt(1,Id );
-            }
+                String Id = request.getParameter("q_id");
             String ans=request.getParameter("Answer");
+            pst.setString(1,Id);
            pst.setString(2,ans);       
             pst.executeUpdate();
-               out.println("Added Successfully--");
+               response.sendRedirect("index.html");
               
                
           
                 //out.println("Incorrect login credentials");
             
         } 
-        catch (ClassNotFoundException | SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
        
         }

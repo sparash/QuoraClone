@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Rahul
+ * @author DELL
  */
 public class AddQServlet extends HttpServlet {
 
@@ -49,7 +49,8 @@ public class AddQServlet extends HttpServlet {
              
                    
              pst.executeUpdate();
-               out.println("Added Successfully--");
+              
+          response.sendRedirect("index.html");
               
                
           

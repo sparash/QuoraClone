@@ -1,3 +1,14 @@
+<%-- 
+    Document   : newjsp1
+    Created on : 3-Dec-2018, 12:08:15 AM
+    Author     : DELL
+--%>
+
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -5,6 +16,12 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+    <%Class.forName("com.mysql.jdbc.Driver");
+            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false","root","sparashadmin1234.@");
+            String query1="select * from question";
+            PreparedStatement pstmt=conn.prepareStatement(query1);
+            ResultSet rs=pstmt.executeQuery();
+    %>
     <head>
         <style>
 /*            
@@ -256,11 +273,11 @@ audio {
     <hr>
     <form action="AnswerServlet" method="POST">
         <select name="q_id">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
+            <% while(rs.next())
+        {%>
+        <option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
+            <%}%>
+        </select><br>
     <label for="name"><b>Answer</b></label>
     <input type="text" placeholder="Add Answer" name="Answer" required>
 
