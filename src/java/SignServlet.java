@@ -1,25 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author Rahul
+ * @author DELL
  */
 public class SignServlet extends HttpServlet {
 
@@ -56,7 +47,7 @@ public class SignServlet extends HttpServlet {
                 session.setAttribute("user",u);
             // Set expiry time of the session to 30mins
                 session.setMaxInactiveInterval(30*60);
-                String url=response.encodeRedirectURL("SignupSuccess");
+                String url=response.encodeRedirectURL("index.html");
                 response.sendRedirect(url);
             }
             else

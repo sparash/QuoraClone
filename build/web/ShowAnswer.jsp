@@ -1,36 +1,136 @@
-<%-- 
-    Document   : ShowAnswer
-    Created on : 5 Nov, 2018, 4:14:54 PM
-    Author     : DELL
---%>
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-<%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-      <% 
-           ArrayList<String> l=(ArrayList)request.getAttribute("m1");
-           
-         for(String h:l)
-        { 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author Rahul
+ */
+public class AnswerServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
        
+       
+        try {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShowAnswer</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false", "root", "sparashadmin1234.@");
+            PreparedStatement pst1 = conn.prepareStatement("Select count(*) from Question");
+            ResultSet rs = pst1.executeQuery();
+            int count1=0;
+            while (rs.next())
+            {
+                count1 =rs.getInt("q_id");
+            }
+            for(int i=1;i<=count1;i++)
+            {
+                out.println("<form>");
+                PreparedStatement pst2 = conn.prepareStatement("Select ques from Question where qid="+i);
+                ResultSet rs2 = pst2.executeQuery();
+                while (rs2.next())
+                {
+                    String Question =rs.getString("q_id");
+                    out.println("<p>"+Question+"</p>");
+                }
+                out.println("<textarea name='"'answer'"'>");
+                out.println("</textarea>");
+            }
             
-          out.println(h+"<br>");
-      
-  
-        
+            PreparedStatement pst = conn.prepareStatement("Insert into QA values(?,?)");
+            
+            while(rs.next())
+            {
+                String Question = rs.getString("ques");
+                pst.setString(1,Question );
+            }
+           pst.setString(2,Answer);       
+            pst.executeUpdate();
+               out.println("Added Successfully--");
+              
+               
           
+                //out.println("Incorrect login credentials");
+            
+        } 
+        catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+       
         }
-         
+    }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-              %>
-        
-        
-    </body>
-</html>
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+       
+       
+       
+       
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

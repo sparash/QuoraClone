@@ -42,7 +42,7 @@ public class LServlet extends HttpServlet {
                 session.setAttribute("user",u);
             // Set expiry time of the session to 30mins
                 session.setMaxInactiveInterval(30*60);
-                String url=response.encodeRedirectURL("LoginSuccess");
+                String url=response.encodeRedirectURL("index.html");
                 response.sendRedirect(url);
             }
             else

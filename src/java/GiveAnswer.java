@@ -37,7 +37,7 @@ public class GiveAnswer extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/spas?useSSL=false", "root", "sparashadmin1234.@");
-            PreparedStatement pst = conn.prepareStatement("Select * from Question");         
+            PreparedStatement pst = conn.prepareStatement("Select * from Answer");         
              ResultSet rs =  pst.executeQuery();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
